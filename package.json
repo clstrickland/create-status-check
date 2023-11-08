@@ -1,5 +1,5 @@
 {
-  "name": "github-status-action",
+  "name": "create-status-check",
   "version": "1.1.0",
   "private": true,
   "description": "Github status action",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/billyjbryant/github-status-action.git"
+    "url": "git+https://github.com/billyjbryant/create-status-check.git"
   },
   "keywords": [
     "actions",
