@@ -10,7 +10,7 @@ Adds a status check update to a commit. GitHub will always show the latest state
 
 > **Note**
 >
-> This action was forked from https://github.com/Sibz/create-status-check which has not been updated in 2+ years. Rather than create another PR, I forked it to a new action, updated all dependencies and restored build tests.
+> This action was forked from [Sibz/github-status-action](https://github.com/Sibz/github-status-action) which has not been updated in 2+ years. Rather than create another PR, I forked it to a new action, updated all dependencies and restored build tests.
 
 ## Usage
 
