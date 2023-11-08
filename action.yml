@@ -1,6 +1,6 @@
 name: 'github-status-action'
 description: 'Adds a check status on a commit, GitHub reports the last status added for a particular context.'
-author: 'Sibz@EntityZero'
+author: 'BillyJBryant'
 branding:
   icon: 'check'  
   color: 'green'
@@ -12,7 +12,7 @@ inputs:
     description: 'The status of the check: success, error, failure or pending'
     required: true
   context:
-    description: 'The context, this is displayed as the name of the check'
+    description: 'The context, this is displayed as the name of the check [Default: "default"]'
     default: 'default'
     required: false
   description:
@@ -20,20 +20,20 @@ inputs:
     default: ''
     required: false
   owner:
-    description: 'Repostory owner, defaults to context github.repository_owner if omited'
+    description: 'Repository Owner [Default: github.repository_owner]'
     default: ${{ github.repository_owner }}
     required: false
   repository:
-    description: 'Repository, default to context github.repository if omited'
+    description: 'Repository [Default: github.repository]'
     default: ${{ github.repository }}
     required: false
   sha:
-    description: 'SHA of commit to update status on, defaults to context github.sha'
+    description: 'SHA of commit to update status on [Default: github.sha]'
     default: ${{ github.sha }}
     required: false
   target_url: 
     description: 'URL/URI to use for further details.'
     required: false
 runs:
-  using: 'node12'
+  using: 'node20'
   main: 'dist/index.js'

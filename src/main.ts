@@ -1,8 +1,6 @@
-import * as core from '@actions/core'
-import { Octokit } from '@octokit/rest'
-import makeStatus, { StatusRequest } from './makeStatusRequest'
-import makeStatusRequest from './makeStatusRequest';
-import { RequestParameters } from '@octokit/types';
+import * as core from '@actions/core';
+import { Octokit } from '@octokit/rest';
+import makeStatusRequest, { StatusRequest } from './makeStatusRequest';
 
 async function run(): Promise<void> {
   const authToken: string = core.getInput('authToken');
@@ -11,11 +9,11 @@ async function run(): Promise<void> {
   try {
     octokit = new Octokit({
       auth: authToken,
-      userAgent: "github-status-action",
+      userAgent: 'github-status-action',
       baseUrl: 'https://api.github.com',
       log: {
-        debug: () => { },
-        info: () => { },
+        debug: () => {},
+        info: () => {},
         warn: console.warn,
         error: console.error
       },
@@ -26,28 +24,50 @@ async function run(): Promise<void> {
       }
     });
   } catch (error) {
-    core.setFailed("Error creating octokit:\n" + error.message);
-    return;
+    if (error instanceof Error) {
+      core.setFailed(`Error creating octokit:\n${error.message}`);
+      return;
+    } else {
+      core.setFailed(`Unknown Error creating octokit:\n${error}`);
+      return;
+    }
   }
 
   if (octokit == null) {
-    core.setFailed("Error creating octokit:\noctokit was null");
+    core.setFailed('Error creating octokit: octokit was null');
     return;
   }
 
-  let statusRequest: StatusRequest
+  let statusRequest: StatusRequest;
   try {
     statusRequest = makeStatusRequest();
-  }
-  catch (error) {
-    core.setFailed(`Error creating status request object: ${error.message}`);
-    return;
+  } catch (error) {
+    if (error instanceof Error) {
+      core.setFailed(`Error creating status request object: ${error.message}`);
+      return;
+    } else {
+      core.setFailed(`Unknown Error creating status request object:\n${error}`);
+      return;
+    }
   }
 
-  try {   
-    await octokit.repos.createStatus(statusRequest);
+  try {
+    await octokit.repos.createCommitStatus({
+      ...statusRequest,
+      headers: {
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
+    });
   } catch (error) {
-    core.setFailed(`Error setting status:\n${error.message}\nRequest object:\n${JSON.stringify(statusRequest, null, 2)}`);
+    if (error instanceof Error) {
+      core.setFailed(
+        `Error setting status: ${
+          error.message
+        }\nRequest object:\n${JSON.stringify(statusRequest, null, 2)}`
+      );
+    } else {
+      core.setFailed(`Unknown Error setting status:\n${error}`);
+    }
   }
 }
 
