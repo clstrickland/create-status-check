@@ -1,12 +1,14 @@
-# GitHub Status Action
+# Create Status Check
 
 <p align="center">
-  <a href="https://github.com/mapbox/github-status-action"><img alt="github-status-action status"
-  src="https://github.com/mapbox/github-status-action/workflows/test/badge.svg"></a>
-  <a href="https://github.com/mapbox/github-status-action"><img alt="github-status-action status" src="https://github.com/mapbox/github-status-action/workflows/build/badge.svg"></a>
+  <a href="https://github.com/billyjbryant/github-status-action"><img alt="github-status-action status"
+  src="https://github.com/billyjbryant/github-status-action/workflows/test/badge.svg"></a>
+  <a href="https://github.com/billyjbryant/github-status-action"><img alt="github-status-action status" src="https://github.com/billyjbryant/github-status-action/workflows/build/badge.svg"></a>
 </p>
 
-Adds a status update to a commit. GitHub will always show the latest state of a context.
+Adds a status check update to a commit. GitHub will always show the latest state of a context.
+
+
 
 ## Usage
 

@@ -1,4 +1,4 @@
-name: 'github-status-action'
+name: 'create-status-check'
 description: 'Adds a check status on a commit, GitHub reports the last status added for a particular context.'
 author: 'BillyJBryant'
 branding:
