@@ -47,6 +47,10 @@ export default function makeStatusRequest(
     throw new Error(ERR_INVALID_STATE);
   }
 
+  if (request.repo.startsWith(`${request.owner}/`)) {
+    request.repo = request.repo.replace(`${request.owner}/`, '');
+  }
+
   return request;
 }
 
