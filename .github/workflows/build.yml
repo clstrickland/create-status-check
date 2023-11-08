@@ -11,5 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
+        npm install -g npm@6
         npm install
         npm run all 
