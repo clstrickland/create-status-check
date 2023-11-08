@@ -8,7 +8,9 @@
 
 Adds a status check update to a commit. GitHub will always show the latest state of a context.
 
-
+> **Note**
+>
+> This action was forked from https://github.com/Sibz/github-status-action which has not been updated in 2+ years. Rather than create another PR, I forked it to a new action, updated all dependencies and restored build tests.  
 
 ## Usage
 
@@ -38,13 +40,13 @@ on: # run on any PRs and main branch changes
 pull_request:
 push:
   branches:
-    - master
+    - main
 
 jobs:
 test: # make sure the action works on a clean machine without building
   runs-on: ubuntu-latest
   steps:
-  - uses: actions/checkout@v2
+  - uses: actions/checkout@v4
   - name: Run the action # You would run your tests before this using the output to set state/desc
     uses: mapbox/github-status-action@v1
     with: 
