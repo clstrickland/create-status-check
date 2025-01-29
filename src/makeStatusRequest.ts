@@ -20,7 +20,7 @@ export const ERR_INVALID_OWNER =
 export const ERR_INVALID_STATE =
   "Input 'state' must be one of success | error | failure | pending";
 
-const regExUsername = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
+const regExUsername = /^(?:[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}|[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*(_[a-zA-Z0-9]+))$/i;
 
 export default function makeStatusRequest(
   testCore: any | null = null
@@ -39,9 +39,9 @@ export default function makeStatusRequest(
   request.sha = core.getInput(inputNames.sha);
   request.target_url = core.getInput(inputNames.target_url);
 
-  // if (!regExUsername.test(request.owner)) {
-  //   throw new Error(ERR_INVALID_OWNER);
-  // }
+  if (!regExUsername.test(request.owner)) {
+    throw new Error(ERR_INVALID_OWNER);
+  }
 
   if (!validateState(request.state)) {
     throw new Error(ERR_INVALID_STATE);
