@@ -39,9 +39,9 @@ export default function makeStatusRequest(
   request.sha = core.getInput(inputNames.sha);
   request.target_url = core.getInput(inputNames.target_url);
 
-  if (!regExUsername.test(request.owner)) {
-    throw new Error(ERR_INVALID_OWNER);
-  }
+  // if (!regExUsername.test(request.owner)) {
+  //   throw new Error(ERR_INVALID_OWNER);
+  // }
 
   if (!validateState(request.state)) {
     throw new Error(ERR_INVALID_STATE);
